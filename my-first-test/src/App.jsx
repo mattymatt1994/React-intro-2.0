@@ -1,5 +1,6 @@
 import { Component } from "react";
 import "./App.css";
+import filmsList from "./components/filmsList";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,7 @@ class App extends Component {
         <ul>{this.state.list.ap((item,idx) => {
           return <li key = {item + idx}>{item}</li>;
         })}</ul>
+<filmsList />
       </div>
     );
   }
