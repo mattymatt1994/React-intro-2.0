@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class filmsList extends Component {
+function filmsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
