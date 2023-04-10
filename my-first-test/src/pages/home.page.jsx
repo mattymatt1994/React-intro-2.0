@@ -7,6 +7,7 @@ function HomePage(props) {
     event.preventDefault();
     let newList = [...list,text];
     setList(  newList );
+    setText("");
   }
   
     return (

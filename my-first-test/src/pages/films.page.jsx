@@ -2,7 +2,7 @@ import filterFilmsByDirector from "../components/film.helpers";
 import getListOf from "../components/film.helpers";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-function SingleFilmPage(props) {
+function FilmsPage(props) {
   const [item, setItem] = useState({});
   const [id] = useParams(film);
   function getFilm() {
