@@ -1,21 +1,23 @@
-import filterFilmsByDirector from "../components/film.helpers";
-import getListOf from "../components/film.helpers";
+import {filterFilmsByDirectors} from "../components/film.helpers";
+
+import { getListOf } from "../components/film.helpers";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 function FilmsPage(props) {
-  const [item, setItem] = useState({});
-  const [id] = useParams(film);
+  let [list, setList] = useState([]);
+  let [searchDirector, setSearchDirector] = useState();
+  // const [id] = useParams(film);
   function getFilm() {
-    fetch("https://studioghibliapi-d6fc8.web.app/films/${id}")
+    fetch(`https://studioghibliapi-d6fc8.web.app/films/`)
       .then((res) => res.json())
-      .then((film) => setItem(film))
+      .then((film) => setList(film))
       .catch((err) => console.error(err));
   }
   useEffect(() => {
     getFilm();
   }, []);
 
-  let filmsByDirector = filterFilmsByDirector(list, searchDirector);
+  let filmsByDirector = filterFilmsByDirectors(list, searchDirector);
   let directors = getListOf(list, "director");
   return (
     <div>
@@ -26,10 +28,10 @@ function FilmsPage(props) {
           name="searchDirector"
           id="searchDirector"
           value={searchDirector}
-          onChange={(e) => setSearchFirector(e.target.value)}
+          onChange={(e) => setSearchDirector(e.target.value)}
         >
           <option value="">All</option>
-          {directors.map((idx) => {
+          {directors.map((director, idx) => {
             return (
               <option key={director + idx} value={director}>
                 {director}
@@ -42,7 +44,7 @@ function FilmsPage(props) {
         {filmsByDirector.map((film) => {
           return (
             <li key={film.id}>
-              <Link to={"${film.id}"}>{film.title}</Link>
+              <NavLink to={`${film.id}`}>{film.title}</NavLink>
             </li>
           );
         })}

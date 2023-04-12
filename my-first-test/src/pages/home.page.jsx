@@ -7,7 +7,7 @@ function HomePage(props) {
     event.preventDefault();
     let newList = [...list,text];
     setList(  newList );
-    setText("");
+    setText("")
   }
   
     return (
@@ -35,4 +35,4 @@ function HomePage(props) {
   }
 
 
-export default App;
+export default HomePage;

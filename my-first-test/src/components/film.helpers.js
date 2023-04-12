@@ -1,4 +1,4 @@
-export function filterFilmsByDirctors(list, director) {
+export function filterFilmsByDirectors(list, director) {
   if (director) return list.filter((film) => film.director == director);
   else return list;
 }
@@ -11,7 +11,7 @@ export function getFilmsStats(list) {
       stats.total++;
       stats.acc_score += Number(film.rt_score);
       stats.avg_score = stats.acc_score / stats.total;
-      if (stats.latest == null || stats.latest < filmsList.release_date) {
+      if (stats.latest == null || stats.latest < film.release_date) {
         stats.lates = film.release_date;
       }
       return stats;
