@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-function SingleFilmPage(props) {
-  const [item, setItem] = useState({});
-  const [id] = useParams(film);
+import { filterFilmsByDirector, getListOf } from "../helpers/film.helpers";
+import{Link} from "react-router-dom";
+
+function FilmsPage(props) {
+  let [list, setList] = useState([]);
+  let [searchDirector, setSearchDirector] = useState("");
   function getFilm() {
-    fetch("https://studioghibliapi-d6fc8.web.app/films/${id}")
+    fetch("https://studioghibliapi-d6fc8.web.app/films")
       .then((res) => res.json())
-      .then((film) => setItem(film))
-      .catch((err) => console.error(err));
+      .then((film) => setList(film))
+      .catch((err) => console.error(err));}
     useEffect(() => {
       getFilm();
     }, []);
     let filmsByDirector = filterFilmsByDirector(list, searchDirector);
     let directors = getListOf(list, "director");
-  }
+  
   return (
     <div>
       <h1>Studio Ghibli Films</h1>
@@ -23,7 +25,7 @@ function SingleFilmPage(props) {
           name="searchDirector"
           id="searchDirector"
           value={searchDirector}
-          onChange={(e) => setSearchFirector(e.target.value)}
+          onChange={(e) => setSearchDirector(e.target.value)}
            > 
         <option value="">All</option>
           {directors.map((idx)=>{
@@ -37,7 +39,7 @@ function SingleFilmPage(props) {
         {filmsByDirector.map((film)=>{
             return(
                <li key={film.id}>
-                <Link to={'${film.id}'}>{film.title}</Link>
+                <Link to={`${film.id}`}>{film.title}</Link>
                </li> 
             );
         })}
