@@ -18,26 +18,25 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Hello World!</h1>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="text"
-            id="text"
-            value={this.state.text}
-            onChange={(event) => this.setState({ text: event.target.value })}
-          />
-          <button type="submit">Add</button>
-        </form>
-
-        <ul>
-          {this.state.list.map((item, idx) => {
-            return <li key={item + idx}>{item}</li>;
-          })}
-        </ul>
-        <FilmsList />
-      </div>
+      <BrowserRouter>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to = "/">Home</NavLink>
+            </li>
+          
+            <li>
+              <NavLink to = "films">Films</NavLink>
+            </li>
+          </ul>
+        </nav>
+  
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="films" element={<FilmsPage />} />
+          <Route path= "film/:id" element= {<SingleFilmPage/>}/>
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
