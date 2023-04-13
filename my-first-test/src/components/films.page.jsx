@@ -39,7 +39,7 @@ function FilmsPage(props) {
         {filmsByDirector.map((film)=>{
             return(
                <li key={film.id}>
-                <Link to={`${film.id}`}>{film.title}</Link>
+                <Link to={`film/${film.id}`}>{film.title}</Link>
                </li> 
             );
         })}
