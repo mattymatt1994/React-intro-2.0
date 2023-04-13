@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import FilmsList from "./components/filmsList.jsx";
+import SingleFilmPage from "./components/singlefilm.page";
 class App extends Component {
   constructor(props) {
     super(props);
