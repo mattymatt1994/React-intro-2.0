@@ -37,7 +37,7 @@ class App extends React.Component {
             name="listInput"
             id="listInput"
             value={this.state.text}
-            onChange={this.onSubmit}
+            onChange={this.handleChange}
           />
           <button type="submit">Add</button>
         </form>
