@@ -26,7 +26,7 @@ class App extends Component {
   <button type="submit">Add</button>
         </form>
           
-        <ul>{this.state.list.ap((item,idx) => {
+        <ul>{this.state.list.map((item,idx) => {
           return <li key = {item + idx}>{item}</li>;
         })}</ul>
 <filmsList />
