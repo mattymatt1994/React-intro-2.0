@@ -1,35 +1,53 @@
-import { Component } from "react";
+import React from "react";
 import "./App.css";
-import filmsList from "./components/filmsList";
-class App extends Component {
+// import filmsList from "./components/filmsList";
+class App extends React.Component {
   constructor(props) {
+    //Super calls the parent constructor
     super(props);
     this.state = {
       list: ["ready", "set", "go"],
       text: "",
     };
-   this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  onSubmit(event){
+  //Make sure that the method is bound to this class
+  //Aka, keep Texas from leaving the Union!
+
+  handleChange(event) {
+    this.setState({
+      text: event.target.value,
+    });
+  }
+
+  onSubmit(event) {
     event.preventDefault();
-    let newList = [...this.state.list, this.state.list];
-    this.setState({list : newList, text: ""});
+    this.setState({
+      list: [...this.state.list, this.state.text],
+    });
   }
   render() {
     return (
-      <div>
-        <h1>Hello World!</h1>
+      <div className="App">
+        <h1>React is "okay"..</h1>
         <form onSubmit={this.onSubmit}>
-        
-        <input type="text" name="text" id="text" value={this.state.text}
-        onChange={(event)=> this.setState({text: event.target.value})} />
-  <button type="submit">Add</button>
+          <input
+            type="text"
+            name="listInput"
+            id="listInput"
+            value={this.state.text}
+            onChange={this.onSubmit}
+          />
+          <button type="submit">Add</button>
         </form>
-          
-        <ul>{this.state.list.map((item,idx) => {
-          return <li key = {item + idx}>{item}</li>;
-        })}</ul>
-<filmsList />
+
+        <ul>
+          {this.state.list.map((item, idx) => {
+            return <li key={item + idx}>{item}</li>;
+          })}
+        </ul>
+        <filmsList />
       </div>
     );
   }
